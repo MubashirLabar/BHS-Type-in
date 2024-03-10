@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+  }
+
+  *,
+  ::before,
+  ::after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizelegibility;
+    /* user-select: none; */
+  }
+
+  button,
+  input,
+  a {
+    outline: none;
+    border: none;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:active,
+  input:-webkit-autofill:focus {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 1000px rgb(255, 255, 255) inset !important;
+  }
+}
+
+/* @layer components {
+  * {
+    @apply scroll-py-[48px];
+  }
+} */
+
+@layer utilities {
+  .margins {
+    @apply py-6 px-4 sm:px-6 lg:px-8;
+  }
+
+  .wrapper {
+    @apply w-full max-w-[1200px];
+  }
+
+  .animation {
+    @apply duration-300 transition-all;
+  }
+
+  .animation-2 {
+    transition: all 0.3s cubic-bezier(0, 0, 0.1, 1.08) 0s;
+  }
+
+  .bg-color {
+    background-image: linear-gradient(-20deg, #a925e9 0%, #2741d3 100%);
+  }
+
+  .buttonPrimary {
+    @apply w-full px-5 py-2 text-base font-medium text-white transition-colors duration-300 transform rounded-md bg-color hover:bg-gray-900/90 focus:outline-none focus:bg-gray-900/90 border-[1px] disabled:cursor-not-allowed disabled:opacity-90;
+  }
+
+  .buttonHole {
+    @apply w-full px-5 py-2 text-base font-medium text-gray-900 transition-colors duration-300 transform rounded-md !bg-transparent focus:outline-none focus:bg-gray-900/90 border-[1px] border-solid border-gray-900 disabled:cursor-not-allowed disabled:opacity-80;
+  }
+
+  .fieldLabel {
+    @apply text-sm font-medium text-gray-900;
+  }
+
+  .input {
+    @apply w-full relative px-4 py-2 text-base text-gray-700 bg-white border-[1px] border-solid border-gray-200 rounded-lg focus:border-gray-900 focus:outline-none focus:ring focus:ring-gray-900 focus:ring-opacity-10;
+  }
+
+  .tooltip {
+    @apply absolute top-[-54px] py-[8px] px-[16px] rounded-[3px] text-[15px] text-white bg-black animation flex flex-col justify-center items-center;
+  }
+  .tooltip::after {
+    content: "";
+    @apply absolute bottom-[-4px] h-[8px] w-[8px] text-white bg-black rotate-[45deg];
+  }
+
+  .page-title {
+    @apply text-3xl font-bold text-gray-900;
+  }
+
+  .bgImage {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center !important;
+    @apply bg-gray-50;
+  }
+
+  .ellipsis-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  .ellipsis-2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .ellipsis-3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .holder {
+    animation-duration: 2.2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: shimmer;
+    animation-timing-function: linear;
+    background: linear-gradient(to right, #ddd 8%, #e9e9e9 18%, #ddd 33%);
+    background-size: 1200px 100%;
+  }
+}
