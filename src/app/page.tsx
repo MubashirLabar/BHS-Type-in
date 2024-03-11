@@ -15,29 +15,29 @@ const columns = [
   },
   {
     name: "Pub ID",
-    selector: (row: any) => (row?.PubID ? row.PubID : "-"),
+    selector: (row: any) => (row?.PubID ? parseInt(row.PubID) : "-"),
     sortable: true,
   },
   {
     name: "Channel",
-    selector: (row: any) => (row?.Channel ? row.Channel : "-"),
+    selector: (row: any) => (row?.Channel ? parseInt(row.Channel) : "-"),
     sortable: true,
   },
   {
     name: "Total Searches",
     selector: (row: any) =>
-      row?.["Total Searches"] ? row?.["Total Searches"] : "-",
+      row?.["Total Searches"] ? parseInt(row?.["Total Searches"]) : "-",
     sortable: true,
   },
   {
     name: "Monetized Searches",
     selector: (row: any) =>
-      row?.["Monetized Searches"] ? row?.["Monetized Searches"] : "-",
+      row?.["Monetized Searches"] ? parseInt(row?.["Monetized Searches"]) : "-",
     sortable: true,
   },
   {
     name: "Clicks",
-    selector: (row: any) => (row?.Clicks ? row.Clicks : "-"),
+    selector: (row: any) => (row?.Clicks ? parseInt(row.Clicks) : "-"),
     sortable: true,
   },
   {
