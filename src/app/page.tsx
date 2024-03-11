@@ -42,8 +42,7 @@ const columns = [
   },
   {
     name: "Amount",
-    selector: (row: any) =>
-      parseInt(row?.Amount) > 0 ? `${parseInt(row.Amount) * 0.8}` : "0",
+    selector: (row: any) => `${parseFloat(row.Amount) * 0.8}`,
     sortable: true,
   },
 ];
@@ -94,6 +93,8 @@ export default function Home() {
     tempLink.click();
   };
 
+  console.log("report...", report);
+
   return (
     <main className="w-full flex flex-col">
       {isLoading && <OverlayLoading />}
@@ -110,7 +111,7 @@ export default function Home() {
             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:flex items-center gap-3">
               <div className="w-full flex flex-col gap-1">
                 <div className="min-w-fit text-sm font-medium text-gray-900">
-                  Start Date:
+                  Date:
                 </div>
                 <div className="w-full">
                   <ReactCalendar
