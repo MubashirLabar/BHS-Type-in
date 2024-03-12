@@ -24,6 +24,10 @@ const columns = [
     sortable: true,
   },
   {
+    name: "Country",
+    selector: (row: any) => (row?.Country ? row.Country : "-"),
+  },
+  {
     name: "Total Searches",
     selector: (row: any) =>
       row?.["Total Searches"] ? parseInt(row?.["Total Searches"]) : "-",
@@ -48,15 +52,21 @@ const columns = [
 ];
 
 export default function Home() {
+  const currentDate = new Date();
+  const prevDay = new Date(currentDate);
+  prevDay.setDate(currentDate.getDate() - 1);
+
   const [isLoading, setIsLoading] = useState(false);
   const [report, setReport] = useState([]);
-  const [date, setDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(prevDay);
+  const [endDate, setEndDate] = useState(currentDate);
 
   const handleSearch = async () => {
     setIsLoading(true);
     try {
       const res = await fetchReport({
-        date: moment(date).format("YYYY-MM-DD"),
+        start_date: moment(startDate).format("YYYY-MM-DD"),
+        end_date: moment(endDate).format("YYYY-MM-DD"),
       });
       setReport(res);
 
@@ -76,7 +86,8 @@ export default function Home() {
       return;
     }
     var csv = Papa.unparse(report);
-    var fileName = `report_${moment(date).format("YYYY-MM-DD")}` || "report";
+    var fileName =
+      `report_${moment(startDate).format("YYYY-MM-DD")}` || "report";
 
     var csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     var csvURL = null;
@@ -111,12 +122,23 @@ export default function Home() {
             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:flex items-center gap-3">
               <div className="w-full flex flex-col gap-1">
                 <div className="min-w-fit text-sm font-medium text-gray-900">
-                  Date:
+                  Start Date:
                 </div>
                 <div className="w-full">
                   <ReactCalendar
-                    date={date}
-                    setDate={(date: any) => setDate(date)}
+                    date={startDate}
+                    setDate={(date: any) => setStartDate(date)}
+                  />
+                </div>
+              </div>
+              <div className="w-full flex flex-col gap-1">
+                <div className="min-w-fit text-sm font-medium text-gray-900">
+                  End Date:
+                </div>
+                <div className="w-full">
+                  <ReactCalendar
+                    date={endDate}
+                    setDate={(date: any) => setEndDate(date)}
                   />
                 </div>
               </div>
